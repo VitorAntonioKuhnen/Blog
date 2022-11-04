@@ -6,17 +6,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criação de Publicação</title>
+    <link rel="stylesheet" href="styleCadPubli.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 </head>
 
 <body>
-    <form id="pagina" action="">
+    <form id="pagina" action="" method="post">
         <header id="cabecario">
-            <div>
-                <h1 id="nomeBlog">Nome Blog</h1>
-                <div id="headerLinks">
-                    <a id="inicio" href="">Inicio</a>
-                    <select name="categorias" id="categorias">
-                        <option value="javascript">JavaScript</option>
+            <h1 id="nomeBlog">Nome Blog</h1>
+            <div id="headerLinks">
+                <a id="inicio" href="">Inicio</a>
+                <div id="categorias">
+                    <legend>Categorias</legend>
+                    <select name="select" id="select">
+                        <option disabled selected>Selecione</option>
+                        <option value="categoria"><a href="">Space</a></option>
                         <option value="php">PHP</option>
                         <option value="java">Java</option>
                         <option value="golang">Golang</option>
@@ -25,40 +29,41 @@
                         <option value="C++">C++</option>
                         <option value="erlang">Erlang</option>
                     </select>
-                </div>
 
-                <div id="acessoConta">
-                    <h3>Logar ou Cadastrar</h3>
                 </div>
+                <div id="novaPub">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Criar</p>
+                </div>
+            </div>
+
+            <div id="acessoConta">
+                <i id="logUser" class="fa-solid fa-user"></i>
+                <p id="loga_cad">Logar ou Cadastrar</p>
             </div>
         </header>
 
         <section id="corpo">
-            <fieldset id="fieldTitulo">
-                <legend>Titulo</legend>
-                <input type="text" name="" id="">
-            </fieldset>
-            <input type="image" src="" alt="">
-                <legend>Categorias</legend>
-                <select name="languages" id="lang">
-                    <option value="javascript">JavaScript</option>
-                    <option value="php">PHP</option>
-                    <option value="java">Java</option>
-                    <option value="golang">Golang</option>
-                    <option value="python">Python</option>
-                    <option value="c#">C#</option>
-                    <option value="C++">C++</option>
-                    <option value="erlang">Erlang</option>
+            <div id="blocoCorpo">
+                <div>
+                    <legend id="legendTitulo">Titulo</legend>
+                    <input type="text" name="titulo" id="tituloPub">
+                </div>
+                <legend id="legendTitulo">Selecione uma imagem</legend>
+                <input type="file" name="arquivo" id="">
+                <legend id="legendTitulo">Categorias</legend>
+                <select name="languages" id="defCat">
+                    <option disabled selected>Escolha uma Categoria</option>
+                    <option value="categoria">Space</option>
                 </select>
-            <fieldset id="fieldResumo">
-                <legend>Resumo</legend>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </fieldset>
-            <fieldset id="fieldConteudo">
-                <legend>Conteúdo</legend>
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-            </fieldset>
-            <button id="btCriar" type="submit">Criar</button>
+                <legend id="legendTitulo">Resumo</legend>
+                <textarea name="resumo" id="resumo" cols="30" rows="10"></textarea>
+                <legend id="legendTitulo">Conteúdo</legend>
+                <textarea name="conteudo" id="conteudo" cols="30" rows="10"></textarea>
+                <div id="divbutton">
+                    <button id="btCriar" type="submit">Criar</button>
+                </div>
+            </div>
         </section>
     </form>
 </body>

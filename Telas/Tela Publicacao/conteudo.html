@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conteudo</title>
+    <link rel="stylesheet" href="styleCont.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+</head>
+
+<body>
+    <form id="pagina" action="" method="post">
+        <header id="cabecario">
+            <h1 id="nomeBlog">Nome Blog</h1>
+            <div id="headerLinks">
+                <a id="inicio" href="">Inicio</a>
+                <div id="categorias">
+                    <legend>Categorias</legend>
+                    <select name="select" id="select">
+                        <option disabled selected>Selecione</option>
+                        <option value="categoria"><a href="">Space</a></option>
+                        <option value="php">PHP</option>
+                        <option value="java">Java</option>
+                        <option value="golang">Golang</option>
+                        <option value="python">Python</option>
+                        <option value="c#">C#</option>
+                        <option value="C++">C++</option>
+                        <option value="erlang">Erlang</option>
+                    </select>
+
+                </div>
+                <div id="novaPub">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Criar</p>
+                </div>
+            </div>
+
+            <div id="acessoConta">
+                <i id="logUser" class="fa-solid fa-user"></i>
+                <p id="loga_cad">Logar ou Cadastrar</p>
+            </div>
+        </header>
+        <section>
+            <div id="publicacao">
+                <h3 id="titulo">Titulo Pub</h3>
+                <hr>
+                <div id="conteudo">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, tempora assumenda fugit qui
+                    nesciunt pariatur <br> deserunt repellat delectus! Provident quaerat voluptatem iste omnis culpa
+                    commodi
+                    placeat sed<br> magnam nemo! Id.
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, tempora assumenda fugit qui
+                    nesciunt pariatur deserunt repellat <br>delectus! Provident quaerat voluptatem iste omnis culpa
+                    commodi
+                    placeat sed magnam nemo! Id.
+                    Lorem ipsum dolor sit, amet consectetur <br>adipisicing elit. Soluta, tempora assumenda fugit qui
+                    nesciunt pariatur deserunt repellat delectus! <br>Provident quaerat voluptatem iste omnis culpa
+                    commodi
+                    placeat sed magnam nemo! Id.
+                    Lorem ipsum dolor sit, amet conse<br>ctetur adipisicing elit. Soluta, tempora assumenda fugit qui
+                    nesciunt pariatur deserunt repellat delectus!<br> Provident quaerat voluptatem iste omnis culpa
+                    commodi
+                    placeat sed magnam nemo! Id.<br>
+                    Lorem ipsum dolor sit, amet consectetur<br> adipisicing elit. Soluta, tempora assumenda fugit qui
+                    nesciunt pariatur deserunt repellat delectus! Provident quaerat voluptatem iste omnis culpa commodi
+                    placeat sed magnam nemo! Id.
+
+                </div>
+                <hr>
+                <span>
+                    <p id="autor">Autor | Data e hora</p>
+                </span>
+            </div>
+
+            <div id="comentarios">
+                <span id="btOpcao">
+                    <button type="submit">Normal</button>
+                    <button type="submit">Anonimo</button>
+                </span>
+                <span id="caixaComent">
+                        <textarea name="cxComentario" id="cbComentario" cols="30" rows="10"></textarea>
+                    <button id="comentar" type="submit">Comentar</button>
+                </span>
+
+                <span id="resultComentario">
+                    <div>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
+                        Quis perferendis, blanditiis corrupti error facilis nulla in
+                        laudantium ipsum a rem eaque <br>repellendus ducimus sed nisi,
+                        explicabo cum fugiat? Neque, ducimus.
+                    </div>
+                    <hr>
+                    <p>Autor | Data e hora</p>
+                    
+                </span>
+            </div>
+        </section>
+
+    </form>
+</body>
+
+</html>
