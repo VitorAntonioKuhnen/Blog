@@ -20,15 +20,10 @@
             <div id="categorias">
                 <legend>Categorias</legend>
                 <select name="select" id="select">
-                    <option disabled selected>Selecione</option>
-                    <option value="categoria"><a href="">Space</a></option>
-                    <option value="php">PHP</option>
-                    <option value="java">Java</option>
-                    <option value="golang">Golang</option>
-                    <option value="python">Python</option>
-                    <option value="c#">C#</option>
-                    <option value="C++">C++</option>
-                    <option value="erlang">Erlang</option>
+                    <option disabled selected>Escolha uma Categoria</option>
+                    {% for categ in categorias %}
+                    <option name="categoria" value="categoria">{{categ.nmCategoria}}</option>
+                    {% endfor %}
                 </select>
 
             </div>
@@ -43,7 +38,7 @@
             <p id="loga_cad">Logar ou Cadastrar</p>
         </div>
     </header>
-    <form id="pagina" method="post" action="{% url 'criaPub' %}"> {% csrf_token %}
+    <form id="pagina" method="POST" enctype="multipart/form-data" action="{% url 'criaPub' %}"> {% csrf_token %}
         <section id="corpo">
             <div id="blocoCorpo">
                 <div>
@@ -53,9 +48,11 @@
                 <legend id="legendTitulo">Selecione uma imagem</legend>
                 <input type="file" name="imagem" id="">
                 <legend id="legendTitulo">Categorias</legend>
-                <select name="languages" id="defCat">
+                <select name="tipCateg" id="defCat">
                     <option disabled selected>Escolha uma Categoria</option>
-                    <option name="categoria" value="categoria">Space</option>
+                    {% for categ in categorias %}
+                    <option name="categoria" value="{{categ.id}}">{{categ.nmCategoria}}</option>
+                    {% endfor %}
                 </select>
                 <legend id="legendTitulo">Resumo</legend>
                 <textarea name="resumo" id="resumo" cols="30" rows="10"></textarea>
