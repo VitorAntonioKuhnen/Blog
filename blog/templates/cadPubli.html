@@ -12,38 +12,38 @@
 </head>
 
 <body>
-    <form id="pagina" action="" method="post">
-        <header id="cabecario">
-            <h1 id="nomeBlog">Nome Blog</h1>
-            <div id="headerLinks">
-                <a id="inicio" href="">Inicio</a>
-                <div id="categorias">
-                    <legend>Categorias</legend>
-                    <select name="select" id="select">
-                        <option disabled selected>Selecione</option>
-                        <option value="categoria"><a href="">Space</a></option>
-                        <option value="php">PHP</option>
-                        <option value="java">Java</option>
-                        <option value="golang">Golang</option>
-                        <option value="python">Python</option>
-                        <option value="c#">C#</option>
-                        <option value="C++">C++</option>
-                        <option value="erlang">Erlang</option>
-                    </select>
 
-                </div>
-                <div id="novaPub">
-                    <i class="fa-solid fa-plus"></i>
-                    <p>Criar</p>
-                </div>
+    <header id="cabecario">
+        <h1 id="nomeBlog">Nome Blog</h1>
+        <div id="headerLinks">
+            <a id="inicio" href="">Inicio</a>
+            <div id="categorias">
+                <legend>Categorias</legend>
+                <select name="select" id="select">
+                    <option disabled selected>Selecione</option>
+                    <option value="categoria"><a href="">Space</a></option>
+                    <option value="php">PHP</option>
+                    <option value="java">Java</option>
+                    <option value="golang">Golang</option>
+                    <option value="python">Python</option>
+                    <option value="c#">C#</option>
+                    <option value="C++">C++</option>
+                    <option value="erlang">Erlang</option>
+                </select>
+
             </div>
-
-            <div id="acessoConta">
-                <i id="logUser" class="fa-solid fa-user"></i>
-                <p id="loga_cad">Logar ou Cadastrar</p>
+            <div id="novaPub">
+                <i class="fa-solid fa-plus"></i>
+                <p>Criar</p>
             </div>
-        </header>
+        </div>
 
+        <div id="acessoConta">
+            <i id="logUser" class="fa-solid fa-user"></i>
+            <p id="loga_cad">Logar ou Cadastrar</p>
+        </div>
+    </header>
+    <form id="pagina" method="post" action="{% url 'criaPub' %}"> {% csrf_token %}
         <section id="corpo">
             <div id="blocoCorpo">
                 <div>
@@ -51,11 +51,11 @@
                     <input type="text" name="titulo" id="tituloPub">
                 </div>
                 <legend id="legendTitulo">Selecione uma imagem</legend>
-                <input type="file" name="arquivo" id="">
+                <input type="file" name="imagem" id="">
                 <legend id="legendTitulo">Categorias</legend>
                 <select name="languages" id="defCat">
                     <option disabled selected>Escolha uma Categoria</option>
-                    <option value="categoria">Space</option>
+                    <option name="categoria" value="categoria">Space</option>
                 </select>
                 <legend id="legendTitulo">Resumo</legend>
                 <textarea name="resumo" id="resumo" cols="30" rows="10"></textarea>
