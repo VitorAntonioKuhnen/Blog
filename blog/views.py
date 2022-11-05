@@ -19,22 +19,22 @@ def criaPub(request):
     resumo = request.POST.get('resumo') 
     conteudo = request.POST.get('conteudo') 
     imagem = Publicacao.objects.all()
-    imagem = request.FILE.get('imagem')
+    imagem = request.FILES.get('imagem')
     categoria = request.POST.get('')
     
-
-    if titulo is NULL:
-        messages.error(request,"Informe um Titulo!")
+    if request == "POST":
+        if titulo is NULL:
+            messages.error(request,"Informe um Titulo!")
         
-    elif resumo is NULL:
-        messages.error(request,"Adicione um Resumo")
+        elif resumo is NULL:
+            messages.error(request,"Adicione um Resumo")
 
-    elif conteudo is NULL:
-        messages.error(request,"É necessario adicionar o conteudo para criar uma publicação")
+        elif conteudo is NULL:
+            messages.error(request,"É necessario adicionar o conteudo para criar uma publicação")
 
+        else:
+            Publicacao.objects.create(titulo = titulo, resumo=resumo, conteudo=conteudo, endImage=imagem, visualizacoes=0, usuario_id=request.user.id, categoria=categoria)
+            return redirect(request, 'inicio')
+        
     else:
-        Publicacao.objects.create(titulo = titulo, resumo=resumo, conteudo=conteudo, endImagem=imagem, visualizacao=0, usuario_id=request.user.id, categoria=categoria)
-        return redirect(request, 'inicio')
-        
-
-    return render(request, 'publicacao.html')    
+        return render(request, 'publicacao.html')    
