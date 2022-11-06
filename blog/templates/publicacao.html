@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <form id="pagina" action="" method="post">
+    <form id="pagina" action="{% url 'publicacao' publi.id %}" method="POST"> {% csrf_token %}
         <header id="cabecario">
             <h1 id="nomeBlog">Nome Blog</h1>
             <div id="headerLinks">
@@ -21,8 +21,10 @@
                 <div id="categorias">
                     <legend>Categorias</legend>
                     <select name="select" id="select">
-                        <option disabled selected>Selecione</option>
-                        <option value="categoria"><a href="">Space</a></option>
+                        <option disabled selected>Escolha uma Categoria</option>
+                        {% for categ in categorias %}
+                        <option name="categoria" value="categoria">{{categ.nmCategoria}}</option>
+                        {% endfor %}
                     </select>
 
                 </div>
@@ -39,33 +41,15 @@
         </header>
         <section>
             <div id="publicacao">
-                <h3 id="titulo">Titulo Pub</h3>
+                <h3 id="titulo">{{publi.titulo}}</h3>
                 <hr>
                 <div id="conteudo">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, tempora assumenda fugit qui
-                    nesciunt pariatur <br> deserunt repellat delectus! Provident quaerat voluptatem iste omnis culpa
-                    commodi
-                    placeat sed<br> magnam nemo! Id.
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Soluta, tempora assumenda fugit qui
-                    nesciunt pariatur deserunt repellat <br>delectus! Provident quaerat voluptatem iste omnis culpa
-                    commodi
-                    placeat sed magnam nemo! Id.
-                    Lorem ipsum dolor sit, amet consectetur <br>adipisicing elit. Soluta, tempora assumenda fugit qui
-                    nesciunt pariatur deserunt repellat delectus! <br>Provident quaerat voluptatem iste omnis culpa
-                    commodi
-                    placeat sed magnam nemo! Id.
-                    Lorem ipsum dolor sit, amet conse<br>ctetur adipisicing elit. Soluta, tempora assumenda fugit qui
-                    nesciunt pariatur deserunt repellat delectus!<br> Provident quaerat voluptatem iste omnis culpa
-                    commodi
-                    placeat sed magnam nemo! Id.<br>
-                    Lorem ipsum dolor sit, amet consectetur<br> adipisicing elit. Soluta, tempora assumenda fugit qui
-                    nesciunt pariatur deserunt repellat delectus! Provident quaerat voluptatem iste omnis culpa commodi
-                    placeat sed magnam nemo! Id.
+                    {{publi.conteudo}}
 
                 </div>
                 <hr>
                 <span>
-                    <p id="autor">Autor | Data e hora</p>
+                    <p id="autor">{{publi.usuario.get_full_name}} | {{publi.datHor}}</p>
                 </span>
             </div>
 
@@ -78,18 +62,16 @@
                         <textarea name="cxComentario" id="cbComentario" cols="30" rows="10"></textarea>
                     <button id="comentar" type="submit">Comentar</button>
                 </span>
-
+                {% for coment in comentPubli %}
                 <span id="resultComentario">
                     <div>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. <br>
-                        Quis perferendis, blanditiis corrupti error facilis nulla in
-                        laudantium ipsum a rem eaque <br>repellendus ducimus sed nisi,
-                        explicabo cum fugiat? Neque, ducimus.
+                        {{coment.comentario}}
                     </div>
                     <hr>
-                    <p>Autor | Data e hora</p>
+                    <p>{{coment.usuario.get_full_name}} | {{coment.datHora}}</p>
                     
                 </span>
+                {% endfor %}
             </div>
         </section>
 
