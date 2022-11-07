@@ -22,6 +22,9 @@ def publicacao(request, id):
         if comentario == '':
             messages.error(request, "Adicione um Resumo")
             
+        else:
+            Comentarios.objects.create(comentario=comentario, usuario_id=request.user.id, publicacao_id=id)   
+            return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} ) 
     else:    
         return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} )
 
