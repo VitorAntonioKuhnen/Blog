@@ -54,10 +54,22 @@
             </div>
 
             <div id="comentarios">
-                <span id="btOpcao">
-                    <button type="submit">Normal</button>
-                    <button type="submit">Anonimo</button>
-                </span>
+                {% comment %} <span id="btOpcao">
+                    <button type="submit"></button>
+                </span> {% endcomment %}
+
+                <fieldset id="btOpcao">
+                    <legend>Tipo de Comentário</legend>
+                    <div>
+                        <input type="checkbox" name="normal" id="normal">
+                        <label for="normal">Normal</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="anonimo" id="anonimo">
+                        <label for="anonimo">Anonimo</label>
+                    </div>
+                </fieldset>
+
                 <span id="caixaComent">
                         <textarea name="cxComentario" id="cbComentario" cols="30" rows="10" type="submit"></textarea>
                     <button id="comentar" type="submit">Comentar</button>
@@ -67,9 +79,9 @@
                     <div>
                         {{coment.comentario}}
                     </div>
+                    <br>
                     <hr>
                     <p>{{coment.usuario.get_full_name}} | {{coment.datHora}}</p>
-                    
                 </span>
                 {% endfor %}
             </div>
