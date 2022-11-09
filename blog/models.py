@@ -9,7 +9,7 @@ class Categoria(models.Model):
 
 class Publicacao(models.Model):
     titulo = models.CharField(max_length=255)
-    endImage = models.ImageField()
+    endImage = models.ImageField(upload_to='Publicacao_img/%Y/%m/%d')
     resumo = models.TextField(max_length=1000)
     conteudo = models.TextField()
     visualizacoes = models.IntegerField()
@@ -24,7 +24,7 @@ class Publicacao(models.Model):
 class Comentarios(models.Model):
     comentario = models.TextField()
     datHora = models.DateTimeField(auto_now_add = True)
-    usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING, blank=True, null=True)
     publicacao = models.ForeignKey(Publicacao, on_delete=models.DO_NOTHING)
     
     

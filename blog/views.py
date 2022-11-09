@@ -19,12 +19,20 @@ def publicacao(request, id):
 
     if request.method == "POST":
         comentario = request.POST.get('cxComentario').strip()
+        checkNormal = request.POST.get('check')
+
         if comentario == '':
             messages.error(request, "Adicione um Resumo")
             
         else:
-            Comentarios.objects.create(comentario=comentario, usuario_id=request.user.id, publicacao_id=id)   
-            return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} ) 
+            if checkNormal == '1':
+                Comentarios.objects.create(comentario=comentario, usuario_id=request.user.id, publicacao_id=id)   
+                return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} ) 
+            else:
+                print("passou aqui 2")
+                Comentarios.objects.create(comentario=comentario, publicacao_id=id)   
+                return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} )     
+                
     else:    
         return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} )
 
