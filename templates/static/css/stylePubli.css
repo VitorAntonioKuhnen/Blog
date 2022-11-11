@@ -49,6 +49,8 @@ html {
     justify-content: center;
     flex-direction: column;
     font-weight: bold;
+    width: 16%;
+    gap: 13%;
 }
 
 #logUser {
@@ -87,11 +89,17 @@ section {
     text-align: center;
 }
 
-#conteudo{
+#conteudoPubli{
+    display: flex;
     padding: 15px 25px;
 }
+#conteudo{
+    padding: 0 15px;
+}
+
 #autor{
-    padding: 5px 25px; 
+    padding: 0 25px; 
+    font-size: 12px;
 }
 
 #comentarios{
@@ -122,4 +130,10 @@ section {
     padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.205);
     width: 50%;
+}
+#exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
 }

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conteudo</title>
-    <link rel="stylesheet" href="{% static 'css/styleCont.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylePubli.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
 
 </head>
@@ -15,7 +15,7 @@
 <body>
     <form id="pagina" action="{% url 'publicacao' publi.id %}" method="POST"> {% csrf_token %}
         <header id="cabecario">
-            <h1 id="nomeBlog">Nome Blog</h1>
+            <h1 id="nomeBlog">{{user}}</h1>
             <div id="headerLinks">
                 <a id="inicio" href="">Inicio</a>
                 <div id="categorias">
@@ -33,21 +33,41 @@
                     <p>Criar</p>
                 </div>
             </div>
-
+            {% if user.id is NULL %}
             <div id="acessoConta">
                 <i id="logUser" class="fa-solid fa-user"></i>
                 <p id="loga_cad">Logar ou Cadastrar</p>
             </div>
+            {% else %}
+            
+            <div id="acessoConta">
+                <h4>Usuario: {{user}}</h4>
+                <div id="exit">
+                    <p id="loga_cad">Sair</p>
+                    <i class="fa-sharp fa-solid fa-right-from-bracket"></i>
+                   
+                </div>
+            </div>
+
+            {% endif %}
+
+
+
+
         </header>
         <section>
+
             <div id="publicacao">
                 <h3 id="titulo">{{publi.titulo}}</h3>
                 <hr>
-                <div id="conteudo">
-                    {{publi.conteudo}}
+
+                <div id="conteudoPubli">
+                    <img src="{{publi.endImage.url}}" style="width: 300px; height: 300px;" alt="">
+                    <div id="conteudo">
+                        {{publi.conteudo}}
+                    </div>
 
                 </div>
-                <hr>
                 <span>
                     <p id="autor">{{publi.usuario.get_full_name}} | {{publi.datHor}}</p>
                 </span>
@@ -71,7 +91,7 @@
                 </fieldset>
 
                 <span id="caixaComent">
-                        <textarea name="cxComentario" id="cbComentario" cols="30" rows="10" type="submit"></textarea>
+                    <textarea name="cxComentario" id="cbComentario" cols="30" rows="10" type="submit"></textarea>
                     <button id="comentar" type="submit">Comentar</button>
                 </span>
                 {% for coment in comentPubli %}

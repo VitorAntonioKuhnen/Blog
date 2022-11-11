@@ -30,3 +30,5 @@ class Comentarios(models.Model):
     
     def __str__(self):
         return self.comentario
+
+

@@ -45,7 +45,6 @@ def criaPub(request):
         titulo = request.POST.get('titulo')
         resumo = request.POST.get('resumo')
         conteudo = request.POST.get('conteudo')
-        # imagem = Publicacao.objects.all()
         imagem = request.FILES.get('imagem')
         idCategoria = Categoria.objects.get(id=request.POST.get('tipCateg'))
     
