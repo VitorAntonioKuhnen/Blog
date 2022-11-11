@@ -28,25 +28,28 @@
                     </select>
 
                 </div>
+                {% if user.id is not NULL %} 
                 <div id="novaPub">
                     <i class="fa-solid fa-plus"></i>
                     <p>Criar</p>
                 </div>
+                {% endif %}
             </div>
             {% if user.id is NULL %}
-            <div id="acessoConta">
+            <div id="acessoConta"></div>
+            <a id="acessar" href="{% url 'login' %}">
                 <i id="logUser" class="fa-solid fa-user"></i>
                 <p id="loga_cad">Logar ou Cadastrar</p>
+            </a>
             </div>
             {% else %}
-            
+
             <div id="acessoConta">
                 <h4>Usuario: {{user}}</h4>
-                <div id="exit">
-                    <p id="loga_cad">Sair</p>
-                    <i class="fa-sharp fa-solid fa-right-from-bracket"></i>
-                   
-                </div>
+                <a id="exit" href="{% url 'logout' %}">
+                    <p id="loga_cad sai">Sair</p>
+                    <i id="sai" class="fa-sharp fa-solid fa-right-from-bracket"></i>
+                </a>
             </div>
 
             {% endif %}

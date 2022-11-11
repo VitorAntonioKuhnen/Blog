@@ -23,7 +23,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return redirect('logar')
+    return redirect('login')
 
 
 def cadastro(request):

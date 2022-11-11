@@ -115,3 +115,23 @@ html {
   width: 20%;
   height: 30px;
 }
+
+#acessar{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+#exit{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10%;
+}
+
+#acessar:hover, #exit:hover{
+  transition: 0.5s;
+  transform: scale(1.1);
+}

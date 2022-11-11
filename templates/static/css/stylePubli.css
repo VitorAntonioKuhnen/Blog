@@ -45,14 +45,12 @@ html {
 
 #acessoConta {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-weight: bold;
-    width: 16%;
-    gap: 13%;
+    /* width: 8%; */
 }
-
 #logUser {
     font-size: 200%;
 }
@@ -66,7 +64,7 @@ html {
     align-items: center;
     justify-content: center;
     gap: 10%;
-    padding: 5px 25px;
+    padding: 5px 50px;
     background-color: rgba(117, 105, 90, 0.39);
     border-radius: 15px;
 }
@@ -131,9 +129,23 @@ section {
     border: 1px solid rgba(0, 0, 0, 0.205);
     width: 50%;
 }
+
+#acessar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
 #exit{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10%;
+}
+
+#acessar:hover, #exit:hover{
+    transition: 0.5s;
+    transform: scale(1.1);
 }
