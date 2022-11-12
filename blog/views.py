@@ -1,13 +1,18 @@
 from asyncio.windows_events import NULL
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
-from blog.models import Categoria, Publicacao, Comentarios
+from blog.models import Categoria, Favorito, Publicacao, Comentarios
 from django.contrib.auth.models import User
 
 
 def inicio(request):
-    return render(request)
-
+    publicacoes = Publicacao.objects.all()
+    if request.user.is_superuser:
+        favoritos = Favorito.objects.all() # Permissão para que os super usuarios possam verificar mais de um item
+        return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos})
+    else:
+        favoritos = Favorito.objects.filter(usuario_id=request.user.id)
+        return render(request, 'inicio.html', {'publicacoes':publicacoes, 'favoritos':favoritos})
 
 def cadastroPub(request):
     return render(request, 'CadPubli.html')

@@ -15,7 +15,7 @@
 <body>
     <form id="pagina" action="{% url 'publicacao' publi.id %}" method="POST"> {% csrf_token %}
         <header id="cabecario">
-            <h1 id="nomeBlog">{{user}}</h1>
+            <h1 id="nomeBlog">Nome Blog</h1>
             <div id="headerLinks">
                 <a id="inicio" href="">Inicio</a>
                 <div id="categorias">
@@ -28,11 +28,11 @@
                     </select>
 
                 </div>
-                {% if user.id is not NULL %} 
-                <div id="novaPub">
-                    <i class="fa-solid fa-plus"></i>
-                    <p>Criar</p>
-                </div>
+                {% if user.id is not NULL %}
+                <a  id="novaPub" href="{% url 'cadastroPub' %}">
+                        <i class="fa-solid fa-plus"></i>
+                        <p>Criar</p>
+                </a>
                 {% endif %}
             </div>
             {% if user.id is NULL %}
@@ -84,11 +84,11 @@
                 <fieldset id="btOpcao">
                     <legend>Tipo de Comentário</legend>
                     <div>
-                        <input type="radio" name="check" value="1" id="normal check">
+                        <input type="radio" name="check" value="1" class="check" id="normal" checked>
                         <label for="normal">Normal</label>
                     </div>
                     <div>
-                        <input type="radio" name="check" value="2" id="anonimo check">
+                        <input type="radio" name="check" value="2" class="check" id="anonimo">
                         <label for="anonimo">Anonimo</label>
                     </div>
                 </fieldset>
@@ -97,16 +97,24 @@
                     <textarea name="cxComentario" id="cbComentario" cols="30" rows="10" type="submit"></textarea>
                     <button id="comentar" type="submit">Comentar</button>
                 </span>
-                {% for coment in comentPubli %}
-                <span id="resultComentario">
-                    <div>
-                        {{coment.comentario}}
-                    </div>
-                    <br>
-                    <hr>
-                    <p>{{coment.usuario.get_full_name}} | {{coment.datHora}}</p>
+                <span id="EspComent">
+                    {% for coment in comentPubli %}
+                    <span id="resultComentario">
+                        <p>
+                            {{coment.comentario}}
+                        </p>
+                        <br>
+                        <hr>
+                        <p>
+                            {% if coment.usuario.get_full_name != NULL %}
+                            {{coment.usuario.get_full_name}} | {{coment.datHora}}
+                            {% else %}
+                            Anônimo | {{coment.datHora}}
+                            {% endif %}
+                        </p>
+                    </span>
+                    {% endfor %}
                 </span>
-                {% endfor %}
             </div>
         </section>
 

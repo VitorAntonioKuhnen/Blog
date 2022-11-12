@@ -14,7 +14,7 @@
 <body>
 
     <header id="cabecario">
-        <h1 id="nomeBlog">{{user}}</h1>
+        <h1 id="nomeBlog">Nome Blog</h1>
         <div id="headerLinks">
             <a id="inicio" href="">Inicio</a>
             <div id="categorias">
@@ -27,25 +27,25 @@
                 </select>
 
             </div>
-            <div id="novaPub">
+            <a id="novaPub" href="{% url 'cadastroPub' %}">
                 <i class="fa-solid fa-plus"></i>
                 <p>Criar</p>
-            </div>
+            </a>
         </div>
         {% if user.id is NULL %}
         <div id="acessoConta"></div>
-            <a id="acessar" href="{% url 'login' %}">
-                <i id="logUser" class="fa-solid fa-user"></i>
-                <p id="loga_cad">Logar ou Cadastrar</p>
-            </a>
+        <a id="acessar" href="{% url 'login' %}">
+            <i id="logUser" class="fa-solid fa-user"></i>
+            <p id="loga_cad">Logar ou Cadastrar</p>
+        </a>
         </div>
         {% else %}
 
         <div id="acessoConta">
             <h4>Usuario: {{user}}</h4>
             <a id="exit" href="{% url 'logout' %}">
-                    <p id="loga_cad sai">Sair</p>
-                    <i id="sai" class="fa-sharp fa-solid fa-right-from-bracket"></i>
+                <p id="loga_cad sai">Sair</p>
+                <i id="sai" class="fa-sharp fa-solid fa-right-from-bracket"></i>
             </a>
         </div>
 

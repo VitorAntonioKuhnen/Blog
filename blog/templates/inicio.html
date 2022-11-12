@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styleInicio.css' %}">
+    <title>Nome Blog</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+</head>
+<body>
+    <header id="cabecario">
+        <h1 id="nomeBlog">Nome Blog</h1>
+        <div id="headerLinks">
+            <a id="inicio" href="">Inicio</a>
+            <div id="categorias">
+                <legend>Categorias</legend>
+                <select name="select" id="select">
+                    <option disabled selected>Escolha uma Categoria</option>
+                    {% for categ in categorias %}
+                    <option name="categoria" value="categoria">{{categ.nmCategoria}}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            {% if user.id is not NULL %}
+            <a  id="novaPub" href="{% url 'cadastroPub' %}">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Criar</p>
+            </a>
+            {% endif %}
+        </div>
+
+        {% if user.id is NULL %}
+        <div id="acessoConta"></div>
+        <a id="acessar" href="{% url 'login' %}">
+            <i id="logUser" class="fa-solid fa-user"></i>
+            <p id="loga_cad">Logar ou Cadastrar</p>
+        </a>
+        </div>
+        {% else %}
+
+        <div id="acessoConta">
+            <h4>Usuario: {{user}}</h4>
+            <a id="exit" href="{% url 'logout' %}">
+                <p id="loga_cad sai">Sair</p>
+                <i id="sai" class="fa-sharp fa-solid fa-right-from-bracket"></i>
+            </a>
+        </div>
+
+        {% endif %}
+    </header>
+
+        
+
+        <div id="barra_pesquisa">
+            <div id="mais_acessados">
+                <h4 >Mais acesados</h4>
+            </div>
+            <form class="search-box" action="">
+                <input type="text" class="search-txt" id="search" placeholder="Pesquise aqui..."/> 
+                <a href="#" class="search-btn">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </a>
+            </form>
+        </div>
+
+        <div id="tela">
+                <section id="publi">
+                    {% for publicacao in publicacoes %}
+                    <div id="publicacao">
+                        <hr>
+                        <div id="conteudo">
+                                <div class="block_1">
+                                    <img src="{{publicacao.endImage.url}}" alt="">
+                                </div>
+                                <div class="block_2">
+                                    <h3 id="titulo publicação">{{publicacao.titulo}}</h3>
+                                    <div class="Descricaotexto"></div>
+                                    <p>
+                                        {{publicacao.resumo}}
+                                    </p>
+                                </div>
+                        </div>
+                        <span id="autor_visualização">
+                            <p id="autor">{{publicacao.usuario.get_full_name}} | {{publicacao.datHor}}</p>
+                            <div id="visual">
+                                <i class="fa-regular fa-star estrela"></i>
+                                <i class="fa-solid fa-eye olho"></i>
+                                <p id="visualização">{{publicacao.visualizacoes}} - Visualizações</p>
+                            </div>
+                        </span>
+                        <hr>
+                    </div>
+                    {% endfor %}
+                </section>
+            
+
+            <section id="fav">
+                <div class="container">
+                    <h3 class="publicacao_recente">Favoritos</h3>
+                    <hr>
+                    {% for favorito in favoritos %}
+                    <nav id="favoritado">
+                        <div class="image"><img src="{{favorito.publicacao.endImage.url}}" alt=""></div>
+                        <div id="contexto">
+                            <div class="titulo">{{favorito.publicacao.titulo}}</div>
+                        <div class="resumo">{{favorito.publicacao.resumo}}</div>
+                        </div>
+                    </nav>
+                    {% endfor %}
+                    
+                </div>
+            </section>
+        </form>
+</body>
+</html>

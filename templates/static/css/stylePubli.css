@@ -35,11 +35,11 @@ html {
 
 #novaPub {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     gap: 5px;
     font-weight: bold;
+    color: black;
 
 }
 
@@ -127,7 +127,17 @@ section {
 #resultComentario{
     padding: 5px;
     border: 1px solid rgba(0, 0, 0, 0.205);
+    border-radius: 15px;
     width: 50%;
+    overflow-wrap: anywhere;
+    background-color: #ff37dd52;
+    color: black;
+}
+
+#EspComent{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #acessar{

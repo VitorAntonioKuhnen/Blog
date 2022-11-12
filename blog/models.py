@@ -32,3 +32,10 @@ class Comentarios(models.Model):
         return self.comentario
 
 
+class Favorito(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    publicacao = models.ForeignKey(Publicacao, on_delete=models.DO_NOTHING)
+
+
+    def  __str__(self):
+        return self.publicacao.titulo

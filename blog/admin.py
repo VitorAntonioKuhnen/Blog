@@ -22,3 +22,4 @@ class CategoriaAdmin(admin.ModelAdmin):
     search_fields = ['nmCategoria']
 
 admin.site.register(Categoria, CategoriaAdmin)
+admin.site.register(Favorito)
