@@ -45,7 +45,6 @@ def publicacao(request, id):
 def criaPub(request):
     contexto = {"categorias": Categoria.objects.all()}
 
-
     if request.method == "POST":
         titulo = request.POST.get('titulo')
         resumo = request.POST.get('resumo')
@@ -67,7 +66,7 @@ def criaPub(request):
         else:
 
             Publicacao.objects.create(titulo=titulo, resumo=resumo, conteudo=conteudo, endImage=imagem, visualizacoes=0, usuario_id=request.user.id, categoria=idCategoria)
-            return redirect('publicacao')
+            return redirect('inicio')
 
     else:
         return render(request, 'CadPubli.html', contexto)

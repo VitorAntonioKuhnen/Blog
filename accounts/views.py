@@ -13,7 +13,7 @@ def login(request):
         if check is not None:
             auth.login(request, check)
             print(check)
-            return redirect('criaPub')
+            return redirect('inicio')
         else:
             messages.error(request, 'Usuario ou Senha Incorreto!!')
             return redirect('login')
