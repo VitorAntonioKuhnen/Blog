@@ -23,7 +23,7 @@
                     <select name="select" id="select">
                         <option disabled selected>Escolha uma Categoria</option>
                         {% for categ in categorias %}
-                        <option name="categoria" value="categoria">{{categ.nmCategoria}}</option>
+                        <option name="categoria" value="{{categ.id}}">{{categ.nmCategoria}}</option>
                         {% endfor %}
                     </select>
 
