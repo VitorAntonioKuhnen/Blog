@@ -29,9 +29,9 @@
 
                 </div>
                 {% if user.id is not NULL %}
-                <a  id="novaPub" href="{% url 'cadastroPub' %}">
-                        <i class="fa-solid fa-plus"></i>
-                        <p>Criar</p>
+                <a id="novaPub" href="{% url 'cadastroPub' %}">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Criar</p>
                 </a>
                 {% endif %}
             </div>
@@ -77,9 +77,6 @@
             </div>
 
             <div id="comentarios">
-                {% comment %} <span id="btOpcao">
-                    <button type="submit"></button>
-                </span> {% endcomment %}
 
                 <fieldset id="btOpcao">
                     <legend>Tipo de Comentário</legend>

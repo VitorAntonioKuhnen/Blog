@@ -89,7 +89,7 @@
                 <span id="autor_visualização">
                     <p id="autor">{{publicacao.usuario.get_full_name}} | {{publicacao.datHor}}</p>
                     <div id="visual">
-                        <a href="{% url 'favoritar' publicacao.id %}" class="fa-regular fa-star estrela">{{publicacao.id}}</a>
+                        <a href="{% url 'favoritar' publicacao.id %}" class="fa-regular fa-star estrela"></a>
                         <i class="fa-solid fa-eye olho"></i>
                         <p id="visualização">{{publicacao.visualizacoes}} - Visualizações</p>
                     </div>
@@ -116,7 +116,7 @@
 
             </div>
         </section>
-        </form>
+    </div>
 </body>
 
 </html>

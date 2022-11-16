@@ -9,11 +9,13 @@ from django.db.models import Q
 def inicio(request):
     publicacoes = Publicacao.objects.all()
     if request.user.is_superuser:
-        favoritos = Favorito.objects.all() # Permissão para que os super usuarios possam verificar mais de um item
+        # Permissão para que os super usuarios possam verificar mais de um item
+        favoritos = Favorito.objects.all()
         return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos, "categorias": Categoria.objects.all()})
     else:
         favoritos = Favorito.objects.filter(usuario_id=request.user.id)
-        return render(request, 'inicio.html', {'publicacoes':publicacoes, 'favoritos':favoritos, "categorias": Categoria.objects.all()})
+        return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos, "categorias": Categoria.objects.all()})
+
 
 def cadastroPub(request):
     return render(request, 'CadPubli.html', {"categorias": Categoria.objects.all()})
@@ -24,25 +26,29 @@ def publicacao(request, id):
     comentPubli = Comentarios.objects.filter(publicacao=id)
 
     if request.method == "POST":
-        comentario = request.POST.get('cxComentario').strip()
-        checkNormal = request.POST.get('check')
+        if request.user.is_authenticated:
+            comentario = request.POST.get('cxComentario').strip()
+            checkNormal = request.POST.get('check')
 
-        if comentario == '':
-            messages.error(request, "Adicione um Resumo")
-            
-        else:
-            if checkNormal == '1':
-                Comentarios.objects.create(comentario=comentario, usuario_id=request.user.id, publicacao_id=id)   
-                return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} ) 
+            if comentario == '':
+                messages.error(request, "Adicione um Resumo")
+
             else:
-                print("passou aqui 2")
-                Comentarios.objects.create(comentario=comentario, publicacao_id=id)   
-                return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} )     
-                
+                if checkNormal == '1':
+                    Comentarios.objects.create(
+                        comentario=comentario, usuario_id=request.user.id, publicacao_id=id)
+                    return render(request, 'publicacao.html', {'publi': publi, 'comentPubli': comentPubli, 'categorias': Categoria.objects.all()})
+                else:
+                    Comentarios.objects.create(
+                        comentario=comentario, publicacao_id=id)
+                    return render(request, 'publicacao.html', {'publi': publi, 'comentPubli': comentPubli, 'categorias': Categoria.objects.all()})
+        else:
+            return render(request, 'publicacao.html', {'publi': publi, 'comentPubli': comentPubli, 'categorias': Categoria.objects.all()})
+
     else:
         publi.visualizacoes += 1
         publi.save()
-        return render(request, 'publicacao.html', {'publi': publi, 'comentPubli':comentPubli, 'categorias':Categoria.objects.all()} )
+        return render(request, 'publicacao.html', {'publi': publi, 'comentPubli': comentPubli, 'categorias': Categoria.objects.all()})
 
 
 def criaPub(request):
@@ -54,7 +60,6 @@ def criaPub(request):
         conteudo = request.POST.get('conteudo')
         imagem = request.FILES.get('imagem')
         idCategoria = Categoria.objects.get(id=request.POST.get('tipCateg'))
-    
 
         if titulo is NULL:
             messages.error(request, "Informe um Titulo!")
@@ -68,7 +73,8 @@ def criaPub(request):
 
         else:
 
-            Publicacao.objects.create(titulo=titulo, resumo=resumo, conteudo=conteudo, endImage=imagem, visualizacoes=0, usuario_id=request.user.id, categoria=idCategoria)
+            Publicacao.objects.create(titulo=titulo, resumo=resumo, conteudo=conteudo, endImage=imagem,
+                                      visualizacoes=0, usuario_id=request.user.id, categoria=idCategoria)
             return redirect('inicio')
 
     else:
@@ -77,22 +83,37 @@ def criaPub(request):
 
 def favoritar(request, id):
     publi = Publicacao.objects.get(id=id)
-    print(publi)
-    if Favorito.objects.exists(usuario_id = request.user.id):
-        Favorito.objects.create(usuario_id = request.user.id, publicacao_id = publi.id)
+    favoritei = Favorito.objects.filter(usuario_id=request.user.id)
+    existe = True
+
+    for favorit in favoritei:
+        print(favorit.id)
+        if favorit.publicacao.id == publi.id:
+            existe = False  # Se caso existir alguma publicação que já foi favoritada não irá deixar adicionar mais de 1 vez
+            break
+        else:
+            existe = True
+
+    if existe:
+        Favorito.objects.create(
+            usuario_id=request.user.id, publicacao_id=publi.id)
+        return redirect('inicio')
     else:
-        return redirect('inicio') #Favorito está bugado
-        
+        return redirect('inicio')
+
+
 def buscar(request):
     busca = request.GET.get('pesquisa')
 
-    publicacoes = Publicacao.objects.filter(Q(titulo__icontains=busca) | Q(conteudo__icontains=busca))
+    publicacoes = Publicacao.objects.filter(
+        Q(titulo__icontains=busca) | Q(conteudo__icontains=busca))
     favoritos = Favorito.objects.filter(usuario_id=request.user.id)
-    return render(request, 'inicio.html', {'publicacoes':publicacoes, 'favoritos':favoritos, 'categorias':Categoria.objects.all()})
+    return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos, 'categorias': Categoria.objects.all()})
+
 
 def categoria(request):
-    buscaCateg = request.GET.get('categoria')    
+    buscaCateg = request.GET.get('categoria')
     publicacoes = Publicacao.objects.filter(categoria_id=buscaCateg)
     favoritos = Favorito.objects.filter(usuario_id=request.user.id)
     print(buscaCateg)
-    return render(request, 'inicio.html', {'publicacoes':publicacoes, 'favoritos':favoritos, 'categorias':Categoria.objects.all()})
+    return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos, 'categorias': Categoria.objects.all()})
