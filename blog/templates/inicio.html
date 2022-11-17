@@ -21,8 +21,7 @@
                 <select name="select" id="select">
                     <option disabled selected>Escolha uma Categoria</option>
                     {% for cate in categorias %}
-                    <a href="{% url 'categoria' %}"></a>
-                    <option name="categoria" value="{{categ.id}}">{{cate.nmCategoria}}</option></a>
+                    <option name="categoria" value="{{categ.id}}">{{cate.nmCategoria}}</option>
                     {% endfor %}
                 </select>
 
@@ -105,7 +104,7 @@
                 <h3 class="publicacao_recente">Favoritos</h3>
                 <hr>
                 {% for favorito in favoritos %}
-                <a href="{% url 'publicacao' favorito.id %}" id="favoritado">
+                <a href="{% url 'publicacao' favorito.publicacao.id %}" id="favoritado">
                     <div class="image"><img src="{{favorito.publicacao.endImage.url}}" alt=""></div>
                     <div id="contexto">
                         <div class="titulo">{{favorito.publicacao.titulo}}</div>
