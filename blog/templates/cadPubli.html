@@ -18,14 +18,14 @@
         <div id="headerLinks">
             <a id="inicio" href="{% url 'inicio' %}">Inicio</a>
             <div id="categorias">
-                <legend>Categorias</legend>
-                <select name="select" id="select">
-                    <option disabled selected>Escolha uma Categoria</option>
-                    {% for categ in categorias %}
-                    <option name="categoria" value="categoria">{{categ.nmCategoria}}</option>
+                <li name="select" id="select">
+                    <a href="">Categorias</a>
+                    <ul>
+                    {% for cate in categorias %}
+                    <li><a name="categoria" href="{% url 'categoria' cate.id %}">{{cate.nmCategoria}}</a></li>
                     {% endfor %}
-                </select>
-
+                    </ul>
+                </li>
             </div>
             <a id="novaPub" href="{% url 'cadastroPub' %}">
                 <i class="fa-solid fa-plus"></i>

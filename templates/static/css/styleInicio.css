@@ -1,4 +1,4 @@
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -71,129 +71,169 @@ html {
     border-radius: 15px;
 }
 
+#headerLinks li {
+    position: relative;
+    float: left;
+    border-right: 1px solid #c0c0c0;
+}
+
+#headerLinks li a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: block;
+}
+
+#headerLinks li a:hover {
+    background: #333;
+    color: #fff;
+    -moz-box-shadow: 0 3px 10px 0 #CCC;
+    -webkit-box-shadow: 0 3px 10px 0 #ccc;
+    text-shadow: 0px 0px 5px #fff;
+}
+
+#headerLinks li ul {
+    position: absolute;
+    top: 25px;
+    left: 0;
+    background-color: #fff;
+    display: none;
+}
+
+#headerLinks li:hover ul,
+#headerLinks li.over ul {
+    display: block;
+}
+
+#headerLinks li ul li {
+    border: 1px solid #c0c0c0;
+    display: block;
+    width: 150px;
+}
+
 #inicio {
     color: black;
     font-weight: bold;
 }
 
-#autor{
-    padding: 5px 25px; 
+#autor {
+    padding: 5px 25px;
 }
 
-#conteudo{
+#conteudo {
     padding: 15px 25px;
     display: flex;
     color: black;
 }
 
-#conteudo > .block_2{
+#conteudo>.block_2 {
     display: grid;
     grid-template-columns: 75% 1fr;
     grid-template-rows: 25% 1fr 15%;
     grid-template-areas: 'titulo titulo'
-    'foto descricao'
-    'foto fim';
+        'foto descricao'
+        'foto fim';
     width: 60%;
     background-color: white;
     margin-left: 3%;
 }
 
-#tela{
+#tela {
     display: flex;
 }
 
-#publi{
+#publi {
     width: 75%;
 }
 
-#fav{
+#fav {
     width: 25%;
 }
 
-#recentes{
+#recentes {
     display: grid;
     grid-template-columns: 90%;
 }
 
-#publicacao{
+#publicacao {
     background-color: white;
     padding: 15px 5px;
     color: black;
 }
 
-#titulo{
+#titulo {
     text-align: center;
 }
 
-header{
+header {
     display: grid;
     justify-content: space-between;
 }
 
-h2{
+h2 {
     color: black;
     text-align: center;
 }
 
-p{
+p {
     align-items: center;
 }
 
-.block_1 > img{
+.block_1>img {
     width: 200px;
     height: 200px;
     border-radius: 0;
 }
 
-.block_2{
+.block_2 {
     display: grid;
 }
 
-#mais_acessados{
+#mais_acessados {
     width: 100%;
     font-size: 20px;
     text-align: center;
 }
 
-#publicados_recentemente{
+#publicados_recentemente {
     text-align: center;
     height: 10px;
     font-size: 15px;
     margin-left: 75%;
 }
 
-#pontilhado_publicados_recentemente{
+#pontilhado_publicados_recentemente {
     text-align: center;
     height: 10px;
     font-size: 15px;
     margin-left: 75%;
 }
 
-#barra_pesquisa{
+#barra_pesquisa {
     display: flex;
-    justify-content:right;
+    justify-content: right;
     height: 50px;
     padding: 10px;
 }
 
-.links{
+.links {
     display: flex;
     justify-content: space-between;
 }
 
-.block_2{
+.block_2 {
     display: flex;
     justify-content: space-between;
     width: 40%;
 }
 
-.container{
+.container {
     display: flex;
     background-color: darkgray;
     flex-direction: column;
 }
 
-.publicacao_recente{
+.publicacao_recente {
     color: black;
     display: flex;
     justify-content: center;
@@ -201,7 +241,7 @@ p{
     padding: 20px;
 }
 
-#favoritado{
+#favoritado {
     border: 1px solid;
     margin-top: 10px;
     padding: 10px;
@@ -211,29 +251,29 @@ p{
     gap: 10px;
 }
 
-#contexto > .titulo{
+#contexto>.titulo {
     justify-content: center;
     padding-bottom: 10px;
 }
 
-#favoritado > .resumo{
+#favoritado>.resumo {
     justify-content: start;
     align-items: flex-start;
 }
 
-.image{
+.image {
     color: black;
     display: flex;
     justify-content: start;
     align-items: flex-start;
-    
+
 }
 
-.image>img{
+.image>img {
     width: 100px;
 }
 
-.titulo{
+.titulo {
     color: black;
     display: flex;
     justify-content: start;
@@ -241,7 +281,7 @@ p{
     padding: 0px;
 }
 
-.resumo{
+.resumo {
     color: black;
     display: flex;
     justify-content: start;
@@ -249,7 +289,7 @@ p{
     padding: 0px;
 }
 
-#autor_visualização{
+#autor_visualização {
     justify-content: space-between;
     display: flex;
 }
@@ -269,15 +309,15 @@ border-radius: 60px
 padding: 0px 60px;
 box-shadow: 10px 10px 30px; */
 
-.search-box{
+.search-box {
     background: #fff;
     height: 40px;
     border-radius: 40px;
-    padding: 10px;
+    padding: 4px;
     position: relative;
 }
 
-.search-btn{
+.search-btn {
     color: black;
     position: absolute;
     right: 0px;
@@ -292,13 +332,13 @@ box-shadow: 10px 10px 30px; */
     text-decoration: none;
 }
 
-.search-btn i{
+.search-btn i {
     font-size: 30px;
     z-index: 1;
     position: absolute;
 }
 
-.search-txt{
+.search-txt {
     border: none;
     background: none;
     outline: none;
@@ -308,14 +348,14 @@ box-shadow: 10px 10px 30px; */
     padding-bottom: 10px;
 }
 
-#visual{
+#visual {
     display: flex;
 }
 
-.olho{
+.olho {
     margin-right: 10px;
 }
 
-.estrela{
+.estrela {
     margin-right: 10px;
 }

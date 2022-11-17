@@ -111,9 +111,7 @@ def buscar(request):
     return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos, 'categorias': Categoria.objects.all()})
 
 
-def categoria(request):
-    buscaCateg = request.GET.get('categoria')
-    publicacoes = Publicacao.objects.filter(categoria_id=buscaCateg)
+def categoria(request, id):
+    publicacoes = Publicacao.objects.filter(categoria_id=id)
     favoritos = Favorito.objects.filter(usuario_id=request.user.id)
-    print(buscaCateg)
     return render(request, 'inicio.html', {'publicacoes': publicacoes, 'favoritos': favoritos, 'categorias': Categoria.objects.all()})
